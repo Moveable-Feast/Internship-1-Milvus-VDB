@@ -1,0 +1,4 @@
+pymilvus==2.6.5
+sentence_transformers==5.1.1
+datasets==2.21.0
+tqdm==4.67.1

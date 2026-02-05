@@ -1,0 +1,37 @@
+# milvus.yaml credential store section
+# This section defines all your authentication credentials for external embedding providers
+# Each credential gets a unique name (e.g., aksk1, apikey1) that you'll reference elsewhere
+credential:
+  # For AWS Bedrock or services using access/secret key pairs
+  # 'aksk1' is just an example name - you can choose any meaningful identifier
+  aksk1:                       
+    access_key_id: <YOUR_AK>      
+    secret_access_key: <YOUR_SK>  
+  
+  # For OpenAI, Voyage AI, or other API key-based services
+  # 'apikey1' is a custom name you choose to identify this credential  
+  apikey1:                     
+    apikey: <YOUR_API_KEY>        
+  
+  # For Google Vertex AI using service account credentials
+  # 'gcp1' is an example name for your Google Cloud credentials
+  gcp1:                        
+    credential_json: <BASE64_OF_JSON>
+
+function:
+  textEmbedding:
+    providers:
+      openai:                         # calls OpenAI
+        credential: apikey1           # Reference to the credential label
+        # url:                        # (optional) custom url
+
+      bedrock:                        # calls AWS Bedrock
+        credential: aksk1             # Reference to the credential label
+        region: us-east-2
+
+      vertexai:                       # calls Google Vertex AI
+        credential: gcp1              # Reference to the credential label
+        # url:                        # (optional) custom url
+
+      tei:                            # Built-in Tiny Embedding model
+        enable: true                  # Whether to enable TEI model service
